@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+    {# {{ form_widget(form) }} #}
+    <input
+        name="{{ field_name(form.name) }}"
+        value="{{ field_value(form.name) }}"
+        placeholder="{{ field_label(form.name) }}"
+        class="form-control"
+    />
+
+    <select name="{{ field_name(form.disciplines) }}" class="form-control">
+        {# <option value="">{{ field_label(form.disciplines) }}</option> #}
+
+        {% for label, value in field_choices(form.disciplines) %}
+            <option value="{{ value }}">{{ label }}</option>
+        {% endfor %}
+    </select> 
+    <p>disciplines</p>
+    <ul>
+        {% for discipline in form.disciplines %}
+            <li>{{ discipline.name }}</li>
+        {% endfor %}
+    </ul>
+    <button type="button" class="add_item_link" data-collection-holder-class="disciplines">Add a discipline</button>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Relay;
+use App\Entity\Discipline;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+class RelayType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('name')
+            ->add('disciplines', EntityType::class, [
+                'class' => Discipline::class,
+                'choice_label' => 'name',
+                'multiple' => 'true',
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Relay::class,
+        ]);
+    }
+}

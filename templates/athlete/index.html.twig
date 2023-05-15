@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Athletes{% endblock %}
+
+{% block body %}
+    <h1>Athletes</h1>
+    <p>An athlete is a person who competes in one or more sports</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for athlete in athletes %}
+            <tr>
+                <td>{{ athlete.name }}</td>
+                <td>{{ athlete.age }}</td>
+                <td>{{ athlete.gender }}</td>
+                <td>{{ athlete.isActive ? 'Active' : 'Inactive' }}</td>
+                <td>
+                    <a href="{{ path('app_athlete_show', {'id': athlete.id}) }}">show</a>
+                    <a href="{{ path('app_athlete_edit', {'id': athlete.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_athlete_new') }}">Create new</a>
+{% endblock %}

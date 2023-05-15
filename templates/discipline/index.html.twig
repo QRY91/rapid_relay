@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Disciplines{% endblock %}
+
+{% block body %}
+    <h1>Disciplines</h1>
+    <p>A discipline is an athletic activity that forms the basic building block for a relay race</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for discipline in disciplines %}
+            <tr>
+                <td>{{ discipline.name }}</td>
+                <td>
+                    <a href="{{ path('app_discipline_show', {'id': discipline.id}) }}">show</a>
+                    <a href="{{ path('app_discipline_edit', {'id': discipline.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_discipline_new') }}">Create new</a>
+{% endblock %}

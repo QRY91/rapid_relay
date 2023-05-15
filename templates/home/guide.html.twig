@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Guide{% endblock %}
+{% block body %}
+<h1>Getting started</h1>
+<ol>
+<li>Create some <a href="{{ path('app_discipline_index') }}">Disciplines</a></li>
+<li>Add a few <a href="{{ path('app_athlete_index') }}">Athletes</a> to compete</li>
+<li>Mix and match disciplines into <a href="{{ path('app_relay_index') }}">Relays</a></li>
+<li>Record some <a href="{{ path('app_result_index') }}">Results</a> to track performance</li>
+<li>Generate an optimal <a href="{{ path('app_athlete_team') }}">Team</a> composition</li>
+</ol>
+{% endblock %}

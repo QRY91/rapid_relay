@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Results{% endblock %}
+
+{% block body %}
+    <h1>Results</h1>
+    <p>A result captures an athlete's performance (in seconds) for a specific discipline</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Outcome</th>
+                <th>Discipline</th>
+                <th>Athlete</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for result in results %}
+            <tr>
+                <td>{{ result.date ? result.date|date('Y-m-d') : '' }}</td>
+                <td>{{ result.outcome }}s</td>
+                <td>{{ result.discipline.name }}</td>
+                <td>{{ result.athlete.name }}</td>
+                <td>
+                    <a href="{{ path('app_result_show', {'id': result.id}) }}">show</a>
+                    <a href="{{ path('app_result_edit', {'id': result.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_result_new') }}">Create new</a>
+{% endblock %}
